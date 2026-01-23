@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #e0e0e0;
+  --primary: #00f3ff;
+  --secondary: #bd00ff;
+  --accent: #2d2d2d;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --font-heading: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+}
+
+/* Responsive Container */
+.container {
+  width: 100%;
+  max-width: 1300px;
+  /* Slightly nicer max-width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  /* Mobile padding */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 6rem;
+    /* Large screens get significantly more side spacing */
+    padding-right: 6rem;
+  }
+}
+
+/* Custom Component Classes */
+.glass-panel {
+  background-color: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  /* Softer corners */
+  backdrop-filter: blur(12px);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: black;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.025em;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.neon-text {
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String?
+  link        String?
+  techStack   String
+  linkType    String   @default("github")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CV {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  url       String
+  isActive  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  name        String
+  contactNumber String?
+  email       String
+  subject     String?
+  message     String
+  attachmentUrl String?
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String?
+  updatedAt DateTime @updatedAt
+}

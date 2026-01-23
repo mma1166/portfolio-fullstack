@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { uploadImage } from '@/lib/cloudinary'
 
 export async function GET() {
     const projects = await prisma.project.findMany({
@@ -13,9 +12,6 @@ export async function GET() {
 
 export async function POST(request: Request) {
     const session = await getServerSession()
-    // Note: Pass auth options if needed to verify properly, 
-    // but middleware already protects /admin and we should strictly check session here too.
-    // For simplicity solely relying on middleware for now or checking generic session.
 
     if (!session) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -32,18 +28,7 @@ export async function POST(request: Request) {
         let imageUrl = ''
 
         if (file && file.size > 0) {
-            const buffer = Buffer.from(await file.arrayBuffer())
-            const filename = Date.now() + '_' + file.name.replace(/\s/g, '_')
-            const uploadDir = path.join(process.cwd(), 'public/uploads')
-
-            try {
-                await mkdir(uploadDir, { recursive: true })
-            } catch (e) {
-                // Ignore
-            }
-
-            await writeFile(path.join(uploadDir, filename), buffer)
-            imageUrl = `/uploads/${filename}`
+            imageUrl = await uploadImage(file)
         }
 
         const linkType = data.get('linkType') as string || 'github'

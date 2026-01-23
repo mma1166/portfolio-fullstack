@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { uploadImage } from '@/lib/cloudinary'
 
 export async function GET() {
     try {
@@ -27,18 +26,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'No image provided' }, { status: 400 })
         }
 
-        const buffer = Buffer.from(await file.arrayBuffer())
-        const filename = 'profile_' + Date.now() + '_' + file.name.replace(/\s/g, '_')
-        const uploadDir = path.join(process.cwd(), 'public/uploads')
-
-        try {
-            await mkdir(uploadDir, { recursive: true })
-        } catch (e) {
-            // Ignore
-        }
-
-        await writeFile(path.join(uploadDir, filename), buffer)
-        const imageUrl = `/uploads/${filename}`
+        const imageUrl = await uploadImage(file)
 
         // Update or create profile
         const profile = await prisma.profile.findFirst()

@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { uploadImage } from '@/lib/cloudinary'
 
 export async function DELETE(
     request: Request,
@@ -42,18 +40,7 @@ export async function PUT(
         let imageUrl = data.get('currentImageUrl') as string
 
         if (file && file.size > 0) {
-            const buffer = Buffer.from(await file.arrayBuffer())
-            const filename = Date.now() + '_' + file.name.replace(/\s/g, '_')
-            const uploadDir = path.join(process.cwd(), 'public/uploads')
-
-            try {
-                await mkdir(uploadDir, { recursive: true })
-            } catch (e) {
-                // Ignore
-            }
-
-            await writeFile(path.join(uploadDir, filename), buffer)
-            imageUrl = `/uploads/${filename}`
+            imageUrl = await uploadImage(file)
         }
 
         const linkType = data.get('linkType') as string || 'github'

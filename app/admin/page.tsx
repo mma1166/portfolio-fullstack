@@ -44,10 +44,12 @@ export default async function AdminDashboard() {
                     <p className="text-gray-400">Update your profile picture and persona.</p>
                 </Link>
 
-                <Link href="/admin/settings" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-red-400">
-                    <Lock size={40} className="mb-4 text-red-400 group-hover:scale-110 transition-transform" />
-                    <h2 className="text-2xl font-bold mb-2">Security Settings</h2>
-                    <p className="text-gray-400">Change your administrative password.</p>
+                <Link href="/admin/skills" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-yellow-400">
+                    <div className="mb-4 text-yellow-400 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+                    </div>
+                    <h2 className="text-2xl font-bold mb-2">Skills Matrix</h2>
+                    <p className="text-gray-400">Add, delete, and update skill levels.</p>
                 </Link>
             </div>
 

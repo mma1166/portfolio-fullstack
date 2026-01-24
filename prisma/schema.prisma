@@ -51,3 +51,9 @@ model Profile {
   imageUrl  String?
   updatedAt DateTime @updatedAt
 }
+
+model Skill {
+  id    Int    @id @default(autoincrement())
+  name  String
+  level Int
+}

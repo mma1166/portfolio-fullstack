@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { ArrowRight, Download, ExternalLink, Code2, Mail, Github, Linkedin, Calendar, Briefcase, GraduationCap, Award, BookOpen, Terminal } from 'lucide-react'
+import { ArrowRight, Download, ExternalLink, Code2, Mail, Github, Linkedin, Calendar, Briefcase, GraduationCap, Award, BookOpen, Terminal, Cpu, Rocket } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
+import SkillSection from '@/components/SkillSection'
 
 
 interface Project {
@@ -14,6 +15,12 @@ interface Project {
   linkType: string
   createdAt: Date
   updatedAt: Date
+}
+
+interface Skill {
+  id: number
+  name: string
+  level: number
 }
 
 export const revalidate = 0
@@ -55,18 +62,7 @@ const education = [
   }
 ]
 
-const skills = [
-  { name: "Python", level: 75 },
-  { name: "JavaScript", level: 60 },
-  { name: "Manual Testing", level: 80 },
-  { name: "Cypress Automation", level: 75 },
-  { name: "SDLC / STLC", level: 80 },
-  { name: "Data Science", level: 70 },
-  { name: "Machine Learning", level: 75 },
-  { name: "Linux", level: 85 },
-  { name: "Database", level: 75 },
-  { name: "LLM", level: 70 }
-]
+
 
 const activities = [
   {
@@ -90,6 +86,10 @@ export default async function Home() {
   const projects = await prisma.project.findMany({ orderBy: { createdAt: 'desc' } })
   const activeCV = await prisma.cV.findFirst({ where: { isActive: true } })
   const profile = await prisma.profile.findFirst()
+  const dbSkills = await prisma.skill.findMany()
+
+  // Use DB skills if they exist, otherwise fallback to empty (since they are seeded anyway)
+  const displaySkills = dbSkills.length > 0 ? dbSkills : []
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-white selection:bg-[var(--primary)] selection:text-black relative">
@@ -228,24 +228,14 @@ export default async function Home() {
         </section>
       </div>
 
-      {/* Skills */}
       <section className="py-32 container">
-        <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {skills.map((skill, i) => (
-            <div key={i} className="glass-panel p-6 text-center hover:bg-white/10 transition group">
-              <div className="text-base font-semibold text-gray-300 mb-4">{skill.name}</div>
-              <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-[var(--primary)] h-full rounded-full group-hover:bg-[var(--secondary)] transition-colors" style={{ width: `${skill.level}%` }}></div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Cpu className="text-[var(--primary)]" size={28} /> Skills Matrix</h2>
+        <SkillSection skills={displaySkills} />
       </section>
 
       {/* Projects Section */}
       <section className="py-32 container mt-24" id="projects">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 underline-glow">Testing & Automation Highlights</h2>
+        <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Rocket className="text-[var(--secondary)]" size={28} /> Projects</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project: Project) => (

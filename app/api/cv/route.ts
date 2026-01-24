@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { uploadImage } from '@/lib/cloudinary'
 
 export async function GET() {
     const cvs = await prisma.cV.findMany({
@@ -21,18 +20,7 @@ export async function POST(request: Request) {
 
         if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 })
 
-        const buffer = Buffer.from(await file.arrayBuffer())
-        const filename = Date.now() + '_' + file.name.replace(/\s/g, '_')
-        const uploadDir = path.join(process.cwd(), 'public/uploads')
-
-        try {
-            await mkdir(uploadDir, { recursive: true })
-        } catch (e) {
-            // Ignore
-        }
-
-        await writeFile(path.join(uploadDir, filename), buffer)
-        const url = `/uploads/${filename}`
+        const url = await uploadImage(file)
 
         // If it's the first CV, make it active
         const count = await prisma.cV.count()
@@ -47,6 +35,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(cv)
     } catch (error) {
+        console.error('CV Upload Error:', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

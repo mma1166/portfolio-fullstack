@@ -72,7 +72,7 @@ const activities = [
   {
     role: "General Secretary",
     org: "BRAC University Response Team",
-    details: "Led 250+ students, conducted stakeholder meetings, and negotiated with NGOs. Organizeed various social impactful projects such as: Blood Donation Campaigm, Winter Campaign, Project Hashimukh (A Ramadan Initiative), Breast Cancer Awareness Campaign, and many more."
+    details: "Led 250+ students, conducted stakeholder meetings, and negotiated with NGOs. Organized various social impactful projects such as: Blood Donation Campaign, Winter Campaign, Project Hashimukh (A Ramadan Initiative), Breast Cancer Awareness Campaign, and many more."
   },
   {
     role: "Coordinator of HRM",
@@ -128,7 +128,7 @@ export default async function Home() {
 
               <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
                 <Link href="#contact" className="btn-primary">
-                  Start a Project <ArrowRight size={20} />
+                  Collaborate for Quality <ArrowRight size={20} />
                 </Link>
                 {activeCV ? (
                   <a href={activeCV.url} download className="px-6 py-2.5 rounded-full border border-[var(--glass-border)] hover:border-[var(--primary)] transition-all flex items-center gap-2 hover:bg-white/5">
@@ -245,7 +245,7 @@ export default async function Home() {
 
       {/* Projects Section */}
       <section className="py-32 container mt-24" id="projects">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16">Projects</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 underline-glow">Testing & Automation Highlights</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project: Project) => (
@@ -255,7 +255,9 @@ export default async function Home() {
                   <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center text-gray-700 bg-white/5">
-                    <Code2 size={48} className="mb-2 opacity-50" />
+                    <div className="w-12 h-12 bg-[var(--primary)]/10 rounded-full flex items-center justify-center">
+                      <Terminal size={32} className="text-[var(--primary)] opacity-50" />
+                    </div>
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-4 backdrop-blur-sm p-4">
@@ -341,8 +343,8 @@ export default async function Home() {
           <div>
             <h2 className="text-5xl md:text-7xl font-bold mb-10 leading-none">Let's work <br /> <span className="text-[var(--primary)]">together.</span></h2>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed max-w-md">
-              Have a project in mind or simply want to chat? I am available for freelance commissions and full-time positions.
-              Let's build something extraordinary.
+              Looking to enhance your software's reliability or need expert automation? I am available for freelance SQA consultations and full-time positions.
+              Let&apos;s ensure excellence together.
             </p>
             <div className="space-y-6 text-lg">
               <p className="flex items-center gap-6 text-gray-300 p-4 rounded-xl hover:bg-white/5 transition"><Mail className="text-[var(--primary)]" size={24} /> muntasir145@gmail.com</p>

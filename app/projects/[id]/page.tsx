@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink, Code2, Cpu, Globe, Rocket } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Cpu, Globe, Rocket, Terminal } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 0
@@ -24,7 +24,7 @@ export default async function ProjectDetails({ params }: { params: Promise<{ id:
             <div className="container mx-auto px-4 py-16 relative z-10">
                 {/* Back Button */}
                 <Link href="/#projects" className="inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors mb-12 group">
-                    <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to Projects
+                    <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to Highlights
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -39,7 +39,7 @@ export default async function ProjectDetails({ params }: { params: Promise<{ id:
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center bg-white/5 rounded-2xl">
-                                    <Code2 size={80} className="text-white/20" />
+                                    <Terminal size={80} className="text-white/20" />
                                 </div>
                             )}
                         </div>

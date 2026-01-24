@@ -76,7 +76,7 @@ const activities = [
   },
   {
     role: "Coordinator of HRM",
-    org: "Brac University Adventure Club",
+    org: "BRAC University Adventure Club",
     details: "Managed member databases and oversaw administrative operations. Ensured seamless organizational communication."
   },
   {

@@ -128,7 +128,7 @@ export default async function Home() {
 
               <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
                 <Link href="#contact" className="btn-primary">
-                  Collaborate for Quality <ArrowRight size={20} />
+                  Contact Me <ArrowRight size={20} />
                 </Link>
                 {activeCV ? (
                   <a href={activeCV.url} download className="px-6 py-2.5 rounded-full border border-[var(--glass-border)] hover:border-[var(--primary)] transition-all flex items-center gap-2 hover:bg-white/5">

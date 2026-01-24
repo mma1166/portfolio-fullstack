@@ -12,10 +12,14 @@ export async function uploadImage(file: File): Promise<string> {
     const buffer = Buffer.from(arrayBuffer)
     const base64Data = `data:${file.type};base64,${buffer.toString('base64')}`
 
+    // Determine if it's a PDF to use 'raw' resource type (fixes 401 errors for docs)
+    const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+
     try {
         const result = await cloudinary.uploader.upload(base64Data, {
             folder: 'portfolio',
-            resource_type: 'auto'
+            resource_type: isPDF ? 'raw' : 'auto',
+            type: 'upload'
         })
         return result.secure_url
     } catch (error) {

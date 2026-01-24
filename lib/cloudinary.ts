@@ -12,16 +12,23 @@ export async function uploadImage(file: File): Promise<string> {
     const buffer = Buffer.from(arrayBuffer)
     const base64Data = `data:${file.type};base64,${buffer.toString('base64')}`
 
-    // Determine if it's a PDF to use 'raw' resource type (fixes 401 errors for docs)
     const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
 
     try {
         const result = await cloudinary.uploader.upload(base64Data, {
             folder: 'portfolio',
-            resource_type: isPDF ? 'raw' : 'auto',
-            type: 'upload'
+            resource_type: 'auto',
+            type: 'upload',
+            access_mode: 'public'
         })
-        return result.secure_url
+
+        let finalUrl = result.secure_url
+        // Use the attachment flag for PDFs to force a direct download and solve 401 errors
+        if (isPDF && finalUrl.includes('/upload/')) {
+            finalUrl = finalUrl.replace('/upload/', '/upload/fl_attachment/')
+        }
+
+        return finalUrl
     } catch (error) {
         console.error('Cloudinary upload error:', error)
         throw error

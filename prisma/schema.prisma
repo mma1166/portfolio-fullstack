@@ -29,21 +29,21 @@ model Project {
 model CV {
   id        Int      @id @default(autoincrement())
   filename  String
-  url       String
+  url       String   @db.Text
   isActive  Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model Message {
-  id          Int      @id @default(autoincrement())
-  name        String
+  id            Int      @id @default(autoincrement())
+  name          String
   contactNumber String?
-  email       String
-  subject     String?
-  message     String
+  email         String
+  subject       String?
+  message       String
   attachmentUrl String?
-  isRead      Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  isRead        Boolean  @default(false)
+  createdAt     DateTime @default(now())
 }
 
 model Profile {

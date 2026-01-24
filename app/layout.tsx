@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-heading' })
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Tech Savvy',
-  description: 'A modern, tech-forward portfolio.',
+  title: "Muntasir's Portfolio",
+  description: 'SQA Engineer & Machine Learning Enthusiast.',
 }
 
 import { Providers } from '@/components/Providers'

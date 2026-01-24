@@ -12,7 +12,12 @@ export async function uploadImage(file: File): Promise<string> {
 
     return new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
-            { resource_type: 'auto', folder: 'portfolio' },
+            {
+                resource_type: 'auto',
+                folder: 'portfolio',
+                use_filename: true,
+                unique_filename: true
+            },
             (error, result) => {
                 if (error) {
                     console.error('Cloudinary upload error:', error)

@@ -20,7 +20,10 @@ export async function POST(request: Request) {
 
         if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 })
 
-        const url = await uploadImage(file)
+        // Direct Database Storage as Base64 (Bypasses Cloudinary 401 issues)
+        const buffer = Buffer.from(await file.arrayBuffer())
+        const base64 = buffer.toString('base64')
+        const dataUrl = `data:application/pdf;base64,${base64}`
 
         // If it's the first CV, make it active
         const count = await prisma.cV.count()
@@ -28,14 +31,14 @@ export async function POST(request: Request) {
         const cv = await prisma.cV.create({
             data: {
                 filename: file.name,
-                url,
+                url: dataUrl,
                 isActive: count === 0
             }
         })
 
         return NextResponse.json(cv)
     } catch (error) {
-        console.error('CV Upload Error:', error)
+        console.error('CV Direct Storage Error:', error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

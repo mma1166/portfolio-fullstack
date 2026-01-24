@@ -15,15 +15,17 @@ export async function uploadImage(file: File): Promise<string> {
             {
                 resource_type: 'auto',
                 folder: 'portfolio',
-                use_filename: true,
-                unique_filename: true
+                type: 'upload'
             },
             (error, result) => {
                 if (error) {
                     console.error('Cloudinary upload error:', error)
                     reject(error)
                 } else {
-                    resolve(result?.secure_url || '')
+                    // Force a clean URL to fix the 401 redirection error
+                    const rawUrl = result?.secure_url || ''
+                    const cleanUrl = rawUrl.replace(/([^:])\/\//g, '$1/')
+                    resolve(cleanUrl)
                 }
             }
         ).end(buffer)

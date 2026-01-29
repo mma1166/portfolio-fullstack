@@ -23,24 +23,19 @@ interface Skill {
   level: number
 }
 
+interface Experience {
+  id: number
+  role: string
+  company: string
+  companyUrl: string | null
+  period: string
+  description: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export const revalidate = 0
 
-const experiences = [
-  {
-    role: "Software Test Engineer Intern",
-    company: "Spectrum Software & Consulting (Pvt.) Ltd.",
-    companyUrl: "https://sscl.tech",
-    period: "Nov 2025 — Present",
-    description: "Performing web app testing, creating test scenarios, bug reporting, regression testing, and developing UI automation scripts using Cypress."
-  },
-  {
-    role: "SQA Intern",
-    company: "Deshi League",
-    companyUrl: "https://deshileague.com",
-    period: "Oct 2025 — Nov 2025",
-    description: "Maintained test plans, executed manual test cases, API testing, Android app testing, and load/performance testing."
-  }
-]
 
 const education = [
   {
@@ -87,9 +82,10 @@ export default async function Home() {
   const activeCV = await prisma.cV.findFirst({ where: { isActive: true } })
   const profile = await prisma.profile.findFirst()
   const dbSkills = await prisma.skill.findMany()
+  const dbExperiences = await prisma.experience.findMany({ orderBy: { createdAt: 'desc' } })
 
-  // Use DB skills if they exist, otherwise fallback to empty (since they are seeded anyway)
-  const displaySkills = dbSkills.length > 0 ? dbSkills : []
+  const displaySkills = dbSkills || []
+  const displayExperiences = dbExperiences || []
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-white selection:bg-[var(--primary)] selection:text-black relative">
@@ -203,8 +199,8 @@ export default async function Home() {
         <section>
           <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Briefcase className="text-[var(--secondary)]" /> Experience</h2>
           <div className="space-y-8">
-            {experiences.map((exp, i) => (
-              <div key={i} className="glass-panel p-8 hover:bg-white/5 transition border-l-4 border-l-[var(--secondary)]">
+            {displayExperiences.map((exp: Experience) => (
+              <div key={exp.id} className="glass-panel p-8 hover:bg-white/5 transition border-l-4 border-l-[var(--secondary)]">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
                   <h3 className="text-xl font-bold">{exp.role}</h3>
                   <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300 whitespace-nowrap">{exp.period}</span>

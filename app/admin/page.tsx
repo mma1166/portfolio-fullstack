@@ -51,6 +51,18 @@ export default async function AdminDashboard() {
                     <h2 className="text-2xl font-bold mb-2">Skills Matrix</h2>
                     <p className="text-gray-400">Add, delete, and update skill levels.</p>
                 </Link>
+
+                <Link href="/admin/experience" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-orange-400">
+                    <Briefcase size={40} className="mb-4 text-orange-400 group-hover:scale-110 transition-transform" />
+                    <h2 className="text-2xl font-bold mb-2">Career Hub</h2>
+                    <p className="text-gray-400">Manage work experiences and milestones.</p>
+                </Link>
+
+                <Link href="/admin/settings" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-red-500">
+                    <Lock size={40} className="mb-4 text-red-500 group-hover:scale-110 transition-transform" />
+                    <h2 className="text-2xl font-bold mb-2">Security</h2>
+                    <p className="text-gray-400">Change password and secure dashboard.</p>
+                </Link>
             </div>
 
             <div className="mt-20 text-center">

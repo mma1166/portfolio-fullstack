@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { ArrowRight, Download, ExternalLink, Code2, Mail, Github, Linkedin, Calendar, Briefcase, GraduationCap, Award, BookOpen, Terminal, Cpu, Rocket } from 'lucide-react'
+import { ArrowRight, Download, ExternalLink, Code2, Mail, Github, Linkedin, Calendar, Briefcase, GraduationCap, Award, BookOpen, Terminal, Cpu, Rocket, Lock } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
 import SkillSection from '@/components/SkillSection'
 
@@ -89,11 +89,20 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-white selection:bg-[var(--primary)] selection:text-black relative">
-      <nav className="absolute top-0 w-full p-6 flex justify-end items-center z-50 pointer-events-none">
-        <div className="container mx-auto flex justify-end items-center">
-          <div className="flex gap-6 pointer-events-auto">
-            <Link href="/admin" className="hover:text-[var(--primary)] text-sm uppercase tracking-widest transition-colors font-semibold mix-blend-difference">Login</Link>
-          </div>
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-auto max-w-[95vw]">
+        <div className="glass-panel px-4 md:px-6 py-2 flex items-center gap-1 md:gap-4 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full overflow-x-auto no-scrollbar">
+          <Link href="#about" className="nav-btn">About</Link>
+          <Link href="#experience" className="nav-btn">Career</Link>
+          <Link href="#skills" className="nav-btn">Skills</Link>
+          <Link href="#projects" className="nav-btn">Projects</Link>
+          <div className="w-px h-4 bg-white/10 hidden md:block"></div>
+          <Link href="#thesis" className="nav-btn flex-shrink-0">Research</Link>
+          <Link href="#beyond" className="nav-btn flex-shrink-0">Beyond</Link>
+          <Link href="#contact" className="nav-btn">Contact</Link>
+          <div className="w-px h-4 bg-white/10"></div>
+          <Link href="/admin" className="p-2 hover:text-[var(--primary)] transition-colors" title="Admin Login">
+            <Lock size={18} />
+          </Link>
         </div>
       </nav>
 
@@ -160,7 +169,7 @@ export default async function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-32 container max-w-4xl">
+      <section id="about" className="py-32 container max-w-4xl">
         <h2 className="text-3xl font-bold mb-10 text-[var(--primary)] flex items-center gap-3"><Terminal size={28} /> About Me</h2>
         <div className="glass-panel p-10 text-lg text-gray-300 leading-relaxed space-y-6 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
           <p>
@@ -172,7 +181,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16 py-32">
+      <div id="experience" className="container grid grid-cols-1 lg:grid-cols-2 gap-16 py-32">
         {/* Education */}
         <section>
           <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><GraduationCap className="text-[var(--secondary)]" /> Education</h2>
@@ -224,7 +233,7 @@ export default async function Home() {
         </section>
       </div>
 
-      <section className="py-32 container">
+      <section id="skills" className="py-32 container">
         <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Cpu className="text-[var(--primary)]" size={28} /> Skills Matrix</h2>
         <SkillSection skills={displaySkills} />
       </section>
@@ -273,7 +282,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="py-32 container max-w-6xl">
+      <section id="thesis" className="py-32 container max-w-6xl">
         <div className="glass-panel p-12 border border-[var(--primary)]/20 shadow-[0_0_50px_rgba(0,243,255,0.05)] relative overflow-hidden">
           <div className="absolute top-0 left-0 w-64 h-64 bg-[var(--primary)]/10 blur-[80px] rounded-full pointer-events-none"></div>
           <div className="flex flex-col md:flex-row gap-12 items-center relative z-10">
@@ -307,7 +316,7 @@ export default async function Home() {
       </section>
 
       {/* Extra Curricular */}
-      <section className="py-32 mt-24 container">
+      <section id="beyond" className="py-32 mt-24 container">
         <h2 className="text-3xl font-bold mb-12 border-l-4 border-[var(--primary)] pl-6">Beyond Core</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {activities.map((act, i) => (

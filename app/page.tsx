@@ -107,7 +107,7 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-32 lg:pt-0">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-40 lg:pt-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--primary)_0%,_transparent_70%)] opacity-5 pointer-events-none blur-3xl"></div>
         <div className="absolute top-[20%] left-[20%] w-64 h-64 bg-[var(--secondary)] rounded-full blur-[100px] opacity-10 animate-pulse"></div>
 
@@ -169,7 +169,7 @@ export default async function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 container max-w-4xl">
+      <section id="about" className="py-32 container max-w-4xl scroll-mt-24">
         <h2 className="text-3xl font-bold mb-10 text-[var(--primary)] flex items-center gap-3"><Terminal size={28} /> About Me</h2>
         <div className="glass-panel p-10 text-lg text-gray-300 leading-relaxed space-y-6 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
           <p>
@@ -181,7 +181,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div id="experience" className="container grid grid-cols-1 lg:grid-cols-2 gap-16 py-32">
+      <div id="experience" className="container grid grid-cols-1 lg:grid-cols-2 gap-16 py-32 scroll-mt-24">
         {/* Education */}
         <section>
           <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><GraduationCap className="text-[var(--secondary)]" /> Education</h2>
@@ -233,13 +233,13 @@ export default async function Home() {
         </section>
       </div>
 
-      <section id="skills" className="py-32 container">
+      <section id="skills" className="py-32 container scroll-mt-24">
         <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Cpu className="text-[var(--primary)]" size={28} /> Skills Matrix</h2>
         <SkillSection skills={displaySkills} />
       </section>
 
       {/* Projects Section */}
-      <section className="py-32 container mt-24" id="projects">
+      <section className="py-32 container mt-24 scroll-mt-24" id="projects">
         <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Rocket className="text-[var(--secondary)]" size={28} /> Projects</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -282,7 +282,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="thesis" className="py-32 container max-w-6xl">
+      <section id="thesis" className="py-32 container max-w-6xl scroll-mt-24">
         <div className="glass-panel p-12 border border-[var(--primary)]/20 shadow-[0_0_50px_rgba(0,243,255,0.05)] relative overflow-hidden">
           <div className="absolute top-0 left-0 w-64 h-64 bg-[var(--primary)]/10 blur-[80px] rounded-full pointer-events-none"></div>
           <div className="flex flex-col md:flex-row gap-12 items-center relative z-10">
@@ -316,7 +316,7 @@ export default async function Home() {
       </section>
 
       {/* Extra Curricular */}
-      <section id="beyond" className="py-32 mt-24 container">
+      <section id="beyond" className="py-32 mt-24 container scroll-mt-24">
         <h2 className="text-3xl font-bold mb-12 border-l-4 border-[var(--primary)] pl-6">Beyond Core</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {activities.map((act, i) => (
@@ -333,7 +333,7 @@ export default async function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 container" id="contact">
+      <section className="py-32 container scroll-mt-24" id="contact">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div>
             <h2 className="text-5xl md:text-7xl font-bold mb-10 leading-none">Let's work <br /> <span className="text-[var(--primary)]">together.</span></h2>

@@ -203,7 +203,7 @@ export default function ManageExperience() {
                                         <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300">{exp.period}</span>
                                     </div>
                                     <p className="text-[var(--primary)] font-semibold mb-4">{exp.company}</p>
-                                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">{exp.description}</p>
+                                    <p className="text-gray-400 text-sm leading-relaxed whitespace-pre-line">{exp.description}</p>
                                 </div>
                                 <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button

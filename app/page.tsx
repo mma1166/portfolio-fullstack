@@ -217,7 +217,7 @@ export default async function Home() {
                 ) : (
                   <p className="text-[var(--primary)] mb-4 font-semibold">{exp.company}</p>
                 )}
-                <p className="text-base text-gray-400 leading-loose">{exp.description}</p>
+                <p className="text-base text-gray-400 leading-loose whitespace-pre-line">{exp.description}</p>
               </div>
             ))}
           </div>

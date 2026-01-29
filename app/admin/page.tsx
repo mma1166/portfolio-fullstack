@@ -28,8 +28,8 @@ export default async function AdminDashboard() {
 
                 <Link href="/admin/cv" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-[var(--secondary)]">
                     <FileText size={40} className="mb-4 text-[var(--secondary)] group-hover:scale-110 transition-transform" />
-                    <h2 className="text-2xl font-bold mb-2">CV Vault</h2>
-                    <p className="text-gray-400">Upload new PDF versions and set active CV.</p>
+                    <h2 className="text-2xl font-bold mb-2">Resume Vault</h2>
+                    <p className="text-gray-400">Upload new PDF versions and set active Resume.</p>
                 </Link>
 
                 <Link href="/admin/messages" className="glass-panel p-8 hover:bg-white/5 transition block group border-l-4 border-l-green-400">

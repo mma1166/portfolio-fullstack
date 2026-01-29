@@ -41,7 +41,7 @@ export default function CVAdmin() {
     }
 
     const handleDelete = async (id: number) => {
-        if (!confirm('Delete this CV?')) return
+        if (!confirm('Delete this Resume?')) return
         await fetch(`/api/cv/${id}`, { method: 'DELETE' })
         fetchCvs()
     }
@@ -51,9 +51,9 @@ export default function CVAdmin() {
             <div className="max-w-4xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <Link href="/admin" className="flex items-center gap-2 text-gray-400 hover:text-white transition"><ArrowLeft size={20} /> Back</Link>
-                    <h1 className="text-3xl font-bold">CV Database</h1>
+                    <h1 className="text-3xl font-bold">Resume Database</h1>
                     <label className={`btn-primary text-sm cursor-pointer ${loading ? 'opacity-50' : ''}`}>
-                        {loading ? 'Uploading...' : 'Upload New CV'} <Upload size={18} />
+                        {loading ? 'Uploading...' : 'Upload New Resume'} <Upload size={18} />
                         <input type="file" accept=".pdf" className="hidden" onChange={handleUpload} disabled={loading} />
                     </label>
                 </div>
@@ -86,7 +86,7 @@ export default function CVAdmin() {
                             </div>
                         </div>
                     ))}
-                    {cvs.length === 0 && <p className="text-center text-gray-500">No CVs uploaded.</p>}
+                    {cvs.length === 0 && <p className="text-center text-gray-500">No Resumes uploaded.</p>}
                 </div>
             </div>
         </div>

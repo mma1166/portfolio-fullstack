@@ -128,10 +128,10 @@ export default async function Home() {
                 </Link>
                 {activeCV ? (
                   <a href={activeCV.url} download className="px-6 py-2.5 rounded-full border border-[var(--glass-border)] hover:border-[var(--primary)] transition-all flex items-center gap-2 hover:bg-white/5">
-                    Download CV <Download size={18} />
+                    Download Resume <Download size={18} />
                   </a>
                 ) : (
-                  <span className="px-6 py-2.5 text-gray-500 text-sm flex items-center border border-transparent">CV Not Available</span>
+                  <span className="px-6 py-2.5 text-gray-500 text-sm flex items-center border border-transparent">Resume Not Available</span>
                 )}
               </div>
             </div>

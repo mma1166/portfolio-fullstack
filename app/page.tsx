@@ -92,7 +92,8 @@ export default async function Home() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-auto max-w-[95vw]">
         <div className="glass-panel px-4 md:px-6 py-2 flex items-center gap-1 md:gap-4 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full overflow-x-auto no-scrollbar">
           <Link href="#about" className="nav-btn">About</Link>
-          <Link href="#experience" className="nav-btn">Career</Link>
+          <Link href="#experience" className="nav-btn">Experience</Link>
+          <Link href="#education" className="nav-btn">Education</Link>
           <Link href="#skills" className="nav-btn">Skills</Link>
           <Link href="#projects" className="nav-btn">Projects</Link>
           <div className="w-px h-4 bg-white/10 hidden md:block"></div>
@@ -179,57 +180,59 @@ export default async function Home() {
         </div>
       </section>
 
-      <div id="experience" className="container grid grid-cols-1 lg:grid-cols-2 gap-16 py-32 scroll-mt-24">
-        {/* Education */}
-        <section>
-          <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><GraduationCap className="text-[var(--secondary)]" /> Education</h2>
-          <div className="space-y-8">
-            {education.map((edu, i) => (
-              <div key={i} className="glass-panel p-8 hover:bg-white/5 transition flex items-start gap-6">
-                <div className="bg-white/10 p-4 rounded-full mt-1 shrink-0">
-                  <BookOpen size={24} className="text-[var(--primary)]" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
-                  <p className="text-gray-400 text-lg mb-2">{edu.school}</p>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-                    <span className="flex items-center gap-1"><Calendar size={14} /> {edu.year}</span>
-                    {edu.details && <span className="text-[var(--primary)] font-medium">• {edu.details}</span>}
-                  </div>
-                </div>
+      {/* Experience Section */}
+      <section id="experience" className="py-32 container scroll-mt-24">
+        <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
+          <Briefcase className="text-[var(--secondary)]" /> Experience
+        </h2>
+        <div className="space-y-8 max-w-4xl">
+          {displayExperiences.map((exp: Experience) => (
+            <div key={exp.id} className="glass-panel p-8 hover:bg-white/5 transition border-l-4 border-l-[var(--secondary)]">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
+                <h3 className="text-xl font-bold">{exp.role}</h3>
+                <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300 whitespace-nowrap">{exp.period}</span>
               </div>
-            ))}
-          </div>
-        </section>
+              {exp.companyUrl ? (
+                <a
+                  href={exp.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--primary)] mb-4 font-semibold hover:underline inline-flex items-center gap-1.5"
+                >
+                  {exp.company} <ExternalLink size={14} />
+                </a>
+              ) : (
+                <p className="text-[var(--primary)] mb-4 font-semibold">{exp.company}</p>
+              )}
+              <p className="text-base text-gray-400 leading-loose whitespace-pre-line">{exp.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Experience */}
-        <section>
-          <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Briefcase className="text-[var(--secondary)]" /> Experience</h2>
-          <div className="space-y-8">
-            {displayExperiences.map((exp: Experience) => (
-              <div key={exp.id} className="glass-panel p-8 hover:bg-white/5 transition border-l-4 border-l-[var(--secondary)]">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
-                  <h3 className="text-xl font-bold">{exp.role}</h3>
-                  <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300 whitespace-nowrap">{exp.period}</span>
-                </div>
-                {exp.companyUrl ? (
-                  <a
-                    href={exp.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--primary)] mb-4 font-semibold hover:underline inline-flex items-center gap-1.5"
-                  >
-                    {exp.company} <ExternalLink size={14} />
-                  </a>
-                ) : (
-                  <p className="text-[var(--primary)] mb-4 font-semibold">{exp.company}</p>
-                )}
-                <p className="text-base text-gray-400 leading-loose whitespace-pre-line">{exp.description}</p>
+      {/* Education Section */}
+      <section id="education" className="py-32 container scroll-mt-24">
+        <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
+          <GraduationCap className="text-[var(--secondary)]" /> Education
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {education.map((edu, i) => (
+            <div key={i} className="glass-panel p-8 hover:bg-white/5 transition flex items-start gap-6">
+              <div className="bg-white/10 p-4 rounded-full mt-1 shrink-0">
+                <BookOpen size={24} className="text-[var(--primary)]" />
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
+              <div>
+                <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
+                <p className="text-gray-400 text-lg mb-2">{edu.school}</p>
+                <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                  <span className="flex items-center gap-1"><Calendar size={14} /> {edu.year}</span>
+                  {edu.details && <span className="text-[var(--primary)] font-medium">• {edu.details}</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section id="skills" className="py-32 container scroll-mt-24">
         <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Cpu className="text-[var(--primary)]" size={28} /> Skills Matrix</h2>

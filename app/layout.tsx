@@ -8,6 +8,9 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-heading' })
 export const metadata: Metadata = {
   title: "Muntasir's Portfolio",
   description: 'SQA Engineer & Machine Learning Enthusiast.',
+  icons: {
+    icon: '/icon.png',
+  },
 }
 
 import { Providers } from '@/components/Providers'

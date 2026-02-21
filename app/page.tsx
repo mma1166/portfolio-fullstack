@@ -98,7 +98,7 @@ export default async function Home() {
           <Link href="#projects" className="nav-btn">Projects</Link>
           <div className="w-px h-4 bg-white/10 hidden md:block"></div>
           <Link href="#thesis" className="nav-btn flex-shrink-0">Research</Link>
-          <Link href="#beyond" className="nav-btn flex-shrink-0">Beyond</Link>
+          <Link href="#eca" className="nav-btn flex-shrink-0">ECA</Link>
           <Link href="#contact" className="nav-btn">Contact</Link>
           <div className="w-px h-4 bg-white/10"></div>
           <Link href="/admin" className="p-2 hover:text-[var(--primary)] transition-colors" title="Admin Login">
@@ -316,9 +316,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Extra Curricular */}
-      <section id="beyond" className="py-32 mt-24 container scroll-mt-24">
-        <h2 className="text-3xl font-bold mb-12 border-l-4 border-[var(--primary)] pl-6">Beyond Core</h2>
+      {/* Extra Curricular/ECA Section */}
+      <section id="eca" className="py-32 mt-24 container scroll-mt-24">
+        <h2 className="text-3xl font-bold mb-12 border-l-4 border-[var(--primary)] pl-6">ECA</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {activities.map((act, i) => (
             <div key={i} className="glass-panel p-8 hover:-translate-y-2 transition duration-300 flex flex-col items-start h-full">
